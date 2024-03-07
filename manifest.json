@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "version": "1.0",
+  "name": "Maxis",
+  "content_scripts": [
+    {
+      "matches": ["https://fibresell.maxis.com.my/mvs2ListingV2/*"],
+      "js": ["main.js"]
+    }
+  ],
+  "author": "Tawsif Khan | tawsif.online@gmail.com",
+  "browser_action": {
+    "default_popup": "./index.html",
+    "default_title": "Maxis "
+  },
+  "permissions": ["activeTab", "storage", "tabs"],
+  "background": {
+    "scripts": ["background-script.js"],
+    "persistent": false,
+    "type": "module"
+  }
+}
