@@ -15,6 +15,8 @@ const workedBySelector =
 const orderTypeSelector =
   "#divScrollable > table > tbody > tr:nth-child(2) > td:nth-child(16)";
 
+let end_id = 99999999;
+
 chrome.storage.local.get(["user_data"], function (data) {
   if (data.user_data == undefined) {
     chrome.storage.local.set(
@@ -70,9 +72,9 @@ if (getValue(orderIdSelector)) {
 function insertOrderId(id) {
   let orderId = document.querySelector("#body_txtOrderID");
   orderId.value = "F" + id;
-  let data = getStorageData("active");
+  let data = getStorageData(["active"]);
   data.then(function (result) {
-    if (result.active) {
+    if (result.active && id <= end_id) {
       clickOnSeach();
     }
   });
@@ -105,7 +107,7 @@ let store = (data) =>
     chrome.storage.local.set(data, () => resolve({}))
   );
 async function getStorageData(key) {
-  return await storage([key]);
+  return await storage(key);
 }
 
 async function setStorageData(data) {
@@ -121,14 +123,19 @@ function run(result) {
   }, 2000);
 }
 
-let data = getStorageData("start_id");
+let data = getStorageData(["start_id"]);
 data.then((result) => {
   if (result.start_id === undefined) {
-    setStorageData({ start_id: 5000000 });
+    setStorageData({ start_id: 5000000, end_id: 9999999 });
     run(result);
   } else {
     run(result);
   }
 });
 
+let data1 = getStorageData(["end_id"]);
+
+data1.then((result) => {
+  end_id = result.end_id || "";
+});
 // downloadCSV();

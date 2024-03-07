@@ -83,21 +83,25 @@
     </style>
   </head>
   <body>
+    <div>
+      <label class="switch">
+        <input type="checkbox" id="active" />
+        <span class="slider round"></span>
+      </label>
+    </div>
     <table>
       <tr>
-        <td>Running Order ID:</td>
+        <td>Start Order ID:</td>
+        <td><input type="number" id="start" /></td>
         <td></td>
-        <td>
-          <label class="switch">
-            <input type="checkbox" id="active" />
-            <span class="slider round"></span>
-          </label>
-        </td>
       </tr>
       <tr>
-        <td style="text-align: right">F</td>
-        <td><input type="number" id="start" /></td>
-        <td><button id="run">Save</button></td>
+        <td>End Order ID:</td>
+        <td><input type="number" id="end" /></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><button id="run" style="float: right">Save</button></td>
       </tr>
       <tr>
         <td></td>
